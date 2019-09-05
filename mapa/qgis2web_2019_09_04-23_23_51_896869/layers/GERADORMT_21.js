@@ -1,0 +1,1 @@
+var json_GERADORMT_21 = {"type":"FeatureCollection","name":"GERADORMT_21","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}},"features":[]}
