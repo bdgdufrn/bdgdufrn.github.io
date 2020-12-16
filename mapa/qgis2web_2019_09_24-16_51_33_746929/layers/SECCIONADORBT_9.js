@@ -1,1 +1,0 @@
-var json_SECCIONADORBT_9 = {"type":"FeatureCollection","name":"SECCIONADORBT_9","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}},"features":[]}

@@ -1,0 +1,1272 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="data/CONJUNTO_1.js"></script>
+        <script src="data/SUBESTACAO_2.js"></script>
+        <script src="data/SEGMENTODEDISTRIBUICAOMT_3.js"></script>
+        <script src="data/PONTONOTAVEL_4.js"></script>
+        <script src="data/CONSUMIDORBT_5.js"></script>
+        <script src="data/CONSUMIDORMT_6.js"></script>
+        <script src="data/SECCIONADORMT_7.js"></script>
+        <script src="data/TRANSFORMADORDEDISTRIBUICAO_8.js"></script>
+        <script src="data/TRANSFORMADORDESUBESTACAO_9.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[-5.845564318352038,-35.21399414123481],[-5.831227491511243,-35.18649301614252]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
+        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        var layer_GoogleSatellite_0 = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+            opacity: 1.0,
+            attribution: '',
+        });
+        layer_GoogleSatellite_0;
+        map.addLayer(layer_GoogleSatellite_0);
+        function pop_CONJUNTO_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>OBJECTID</strong><br />' + (feature.properties['OBJECTID'] !== null ? Autolinker.link(String(feature.properties['OBJECTID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>COD_ID</strong><br />' + (feature.properties['COD_ID'] !== null ? Autolinker.link(String(feature.properties['COD_ID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DISTRIBUIDORA</strong><br />' + (feature.properties['DISTRIBUIDORA'] !== null ? Autolinker.link(String(feature.properties['DISTRIBUIDORA'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>NOME</strong><br />' + (feature.properties['NOME'] !== null ? Autolinker.link(String(feature.properties['NOME'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DESCRICAO</strong><br />' + (feature.properties['DESCRICAO'] !== null ? Autolinker.link(String(feature.properties['DESCRICAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Shape_Length</strong><br />' + (feature.properties['Shape_Length'] !== null ? Autolinker.link(String(feature.properties['Shape_Length'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Shape_Area</strong><br />' + (feature.properties['Shape_Area'] !== null ? Autolinker.link(String(feature.properties['Shape_Area'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_CONJUNTO_1_0() {
+            return {
+                pane: 'pane_CONJUNTO_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(114,155,111,1.0)',
+            }
+        }
+        map.createPane('pane_CONJUNTO_1');
+        map.getPane('pane_CONJUNTO_1').style.zIndex = 401;
+        map.getPane('pane_CONJUNTO_1').style['mix-blend-mode'] = 'normal';
+        var layer_CONJUNTO_1 = new L.geoJson(json_CONJUNTO_1, {
+            attribution: '',
+            pane: 'pane_CONJUNTO_1',
+            onEachFeature: pop_CONJUNTO_1,
+            style: style_CONJUNTO_1_0,
+        });
+        bounds_group.addLayer(layer_CONJUNTO_1);
+        map.addLayer(layer_CONJUNTO_1);
+        function pop_SUBESTACAO_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>OBJECTID</strong><br />' + (feature.properties['OBJECTID'] !== null ? Autolinker.link(String(feature.properties['OBJECTID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>COD_ID</strong><br />' + (feature.properties['COD_ID'] !== null ? Autolinker.link(String(feature.properties['COD_ID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DISTRIBUIDORA</strong><br />' + (feature.properties['DISTRIBUIDORA'] !== null ? Autolinker.link(String(feature.properties['DISTRIBUIDORA'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>CONJUNTO</strong><br />' + (feature.properties['CONJUNTO'] !== null ? Autolinker.link(String(feature.properties['CONJUNTO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>NOME</strong><br />' + (feature.properties['NOME'] !== null ? Autolinker.link(String(feature.properties['NOME'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>CARGA_INSTALADA</strong><br />' + (feature.properties['CARGA_INSTALADA'] !== null ? Autolinker.link(String(feature.properties['CARGA_INSTALADA'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DESCRICAO</strong><br />' + (feature.properties['DESCRICAO'] !== null ? Autolinker.link(String(feature.properties['DESCRICAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Shape_Length</strong><br />' + (feature.properties['Shape_Length'] !== null ? Autolinker.link(String(feature.properties['Shape_Length'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Shape_Area</strong><br />' + (feature.properties['Shape_Area'] !== null ? Autolinker.link(String(feature.properties['Shape_Area'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_SUBESTACAO_2_0() {
+            return {
+                pane: 'pane_SUBESTACAO_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(141,90,153,1.0)',
+            }
+        }
+        map.createPane('pane_SUBESTACAO_2');
+        map.getPane('pane_SUBESTACAO_2').style.zIndex = 402;
+        map.getPane('pane_SUBESTACAO_2').style['mix-blend-mode'] = 'normal';
+        var layer_SUBESTACAO_2 = new L.geoJson(json_SUBESTACAO_2, {
+            attribution: '',
+            pane: 'pane_SUBESTACAO_2',
+            onEachFeature: pop_SUBESTACAO_2,
+            style: style_SUBESTACAO_2_0,
+        });
+        bounds_group.addLayer(layer_SUBESTACAO_2);
+        map.addLayer(layer_SUBESTACAO_2);
+        function pop_SEGMENTODEDISTRIBUICAOMT_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>OBJECTID</strong><br />' + (feature.properties['OBJECTID'] !== null ? Autolinker.link(String(feature.properties['OBJECTID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>COD_ID</strong><br />' + (feature.properties['COD_ID'] !== null ? Autolinker.link(String(feature.properties['COD_ID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DISTRIBUIDORA</strong><br />' + (feature.properties['DISTRIBUIDORA'] !== null ? Autolinker.link(String(feature.properties['DISTRIBUIDORA'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>CONJUNTO</strong><br />' + (feature.properties['CONJUNTO'] !== null ? Autolinker.link(String(feature.properties['CONJUNTO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>CIRCUITO_MEDIA_TENSAO</strong><br />' + (feature.properties['CIRCUITO_MEDIA_TENSAO'] !== null ? Autolinker.link(String(feature.properties['CIRCUITO_MEDIA_TENSAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>PONTO_NOTAVEL_CONECTADO_1</strong><br />' + (feature.properties['PONTO_NOTAVEL_CONECTADO_1'] !== null ? Autolinker.link(String(feature.properties['PONTO_NOTAVEL_CONECTADO_1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>PONTO_NOTAVEL_CONECTADO_2</strong><br />' + (feature.properties['PONTO_NOTAVEL_CONECTADO_2'] !== null ? Autolinker.link(String(feature.properties['PONTO_NOTAVEL_CONECTADO_2'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>PAC_1</strong><br />' + (feature.properties['PAC_1'] !== null ? Autolinker.link(String(feature.properties['PAC_1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>PAC_2</strong><br />' + (feature.properties['PAC_2'] !== null ? Autolinker.link(String(feature.properties['PAC_2'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>AREA_LOCALIZACAO</strong><br />' + (feature.properties['AREA_LOCALIZACAO'] !== null ? Autolinker.link(String(feature.properties['AREA_LOCALIZACAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>FASES_CONEXAO</strong><br />' + (feature.properties['FASES_CONEXAO'] !== null ? Autolinker.link(String(feature.properties['FASES_CONEXAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>GEOMETRIA_CABO</strong><br />' + (feature.properties['GEOMETRIA_CABO'] !== null ? Autolinker.link(String(feature.properties['GEOMETRIA_CABO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>FORMACAO_CABO</strong><br />' + (feature.properties['FORMACAO_CABO'] !== null ? Autolinker.link(String(feature.properties['FORMACAO_CABO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>BITOLA_FASE</strong><br />' + (feature.properties['BITOLA_FASE'] !== null ? Autolinker.link(String(feature.properties['BITOLA_FASE'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>BITOLA_NEUTRO</strong><br />' + (feature.properties['BITOLA_NEUTRO'] !== null ? Autolinker.link(String(feature.properties['BITOLA_NEUTRO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>METERIAL_FASE</strong><br />' + (feature.properties['METERIAL_FASE'] !== null ? Autolinker.link(String(feature.properties['METERIAL_FASE'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>MATERIAL_NEUTRO</strong><br />' + (feature.properties['MATERIAL_NEUTRO'] !== null ? Autolinker.link(String(feature.properties['MATERIAL_NEUTRO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ISOLACAO_FASE</strong><br />' + (feature.properties['ISOLACAO_FASE'] !== null ? Autolinker.link(String(feature.properties['ISOLACAO_FASE'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ISOLACAO_NEUTRO</strong><br />' + (feature.properties['ISOLACAO_NEUTRO'] !== null ? Autolinker.link(String(feature.properties['ISOLACAO_NEUTRO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>NUMERO_CONDUTORES_POR_FASE</strong><br />' + (feature.properties['NUMERO_CONDUTORES_POR_FASE'] !== null ? Autolinker.link(String(feature.properties['NUMERO_CONDUTORES_POR_FASE'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>RESISTENCIA_SEQ_POSITIVA</strong><br />' + (feature.properties['RESISTENCIA_SEQ_POSITIVA'] !== null ? Autolinker.link(String(feature.properties['RESISTENCIA_SEQ_POSITIVA'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>REATANCIA_SEQ_POSITIVA</strong><br />' + (feature.properties['REATANCIA_SEQ_POSITIVA'] !== null ? Autolinker.link(String(feature.properties['REATANCIA_SEQ_POSITIVA'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>CARREGAMENTO</strong><br />' + (feature.properties['CARREGAMENTO'] !== null ? Autolinker.link(String(feature.properties['CARREGAMENTO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>CORRENTE_MAXIMA</strong><br />' + (feature.properties['CORRENTE_MAXIMA'] !== null ? Autolinker.link(String(feature.properties['CORRENTE_MAXIMA'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>COMPRIMENTO</strong><br />' + (feature.properties['COMPRIMENTO'] !== null ? Autolinker.link(String(feature.properties['COMPRIMENTO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DESCRICAO</strong><br />' + (feature.properties['DESCRICAO'] !== null ? Autolinker.link(String(feature.properties['DESCRICAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Shape_Length</strong><br />' + (feature.properties['Shape_Length'] !== null ? Autolinker.link(String(feature.properties['Shape_Length'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>RESISTENCIA_SEQ_ZERO</strong><br />' + (feature.properties['RESISTENCIA_SEQ_ZERO'] !== null ? Autolinker.link(String(feature.properties['RESISTENCIA_SEQ_ZERO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>REATANCIA_SEQ_ZERO</strong><br />' + (feature.properties['REATANCIA_SEQ_ZERO'] !== null ? Autolinker.link(String(feature.properties['REATANCIA_SEQ_ZERO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>RESULT_CORRENTE_NOMINAL</strong><br />' + (feature.properties['RESULT_CORRENTE_NOMINAL'] !== null ? Autolinker.link(String(feature.properties['RESULT_CORRENTE_NOMINAL'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>RESULT_TENSAO</strong><br />' + (feature.properties['RESULT_TENSAO'] !== null ? Autolinker.link(String(feature.properties['RESULT_TENSAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>RESULT_TRIFASICO</strong><br />' + (feature.properties['RESULT_TRIFASICO'] !== null ? Autolinker.link(String(feature.properties['RESULT_TRIFASICO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>RESULT_BIFASICO</strong><br />' + (feature.properties['RESULT_BIFASICO'] !== null ? Autolinker.link(String(feature.properties['RESULT_BIFASICO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>RESULT_BIFASICO_TERRA</strong><br />' + (feature.properties['RESULT_BIFASICO_TERRA'] !== null ? Autolinker.link(String(feature.properties['RESULT_BIFASICO_TERRA'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>RESULT_FASE_TERRA</strong><br />' + (feature.properties['RESULT_FASE_TERRA'] !== null ? Autolinker.link(String(feature.properties['RESULT_FASE_TERRA'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>RESULT_FASE_TERRA_MINIMO</strong><br />' + (feature.properties['RESULT_FASE_TERRA_MINIMO'] !== null ? Autolinker.link(String(feature.properties['RESULT_FASE_TERRA_MINIMO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>RESULT_ZTH+_REAL</strong><br />' + (feature.properties['RESULT_ZTH+_REAL'] !== null ? Autolinker.link(String(feature.properties['RESULT_ZTH+_REAL'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>RESULT_ZTH+_IMAG</strong><br />' + (feature.properties['RESULT_ZTH+_IMAG'] !== null ? Autolinker.link(String(feature.properties['RESULT_ZTH+_IMAG'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>RESULT_ZTH0_REAL</strong><br />' + (feature.properties['RESULT_ZTH0_REAL'] !== null ? Autolinker.link(String(feature.properties['RESULT_ZTH0_REAL'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>RESULT_ZTH0_IMAG</strong><br />' + (feature.properties['RESULT_ZTH0_IMAG'] !== null ? Autolinker.link(String(feature.properties['RESULT_ZTH0_IMAG'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>RESULT_X/R</strong><br />' + (feature.properties['RESULT_X/R'] !== null ? Autolinker.link(String(feature.properties['RESULT_X/R'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>RESULT_F_assimetria</strong><br />' + (feature.properties['RESULT_F_assimetria'] !== null ? Autolinker.link(String(feature.properties['RESULT_F_assimetria'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_SEGMENTODEDISTRIBUICAOMT_3_0() {
+            return {
+                pane: 'pane_SEGMENTODEDISTRIBUICAOMT_3',
+                opacity: 1,
+                color: 'rgba(51,240,44,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 4.0,
+                fillOpacity: 0,
+            }
+        }
+        map.createPane('pane_SEGMENTODEDISTRIBUICAOMT_3');
+        map.getPane('pane_SEGMENTODEDISTRIBUICAOMT_3').style.zIndex = 403;
+        map.getPane('pane_SEGMENTODEDISTRIBUICAOMT_3').style['mix-blend-mode'] = 'normal';
+        var layer_SEGMENTODEDISTRIBUICAOMT_3 = new L.geoJson(json_SEGMENTODEDISTRIBUICAOMT_3, {
+            attribution: '',
+            pane: 'pane_SEGMENTODEDISTRIBUICAOMT_3',
+            onEachFeature: pop_SEGMENTODEDISTRIBUICAOMT_3,
+            style: style_SEGMENTODEDISTRIBUICAOMT_3_0,
+        });
+        bounds_group.addLayer(layer_SEGMENTODEDISTRIBUICAOMT_3);
+        map.addLayer(layer_SEGMENTODEDISTRIBUICAOMT_3);
+        function pop_PONTONOTAVEL_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>OBJECTID</strong><br />' + (feature.properties['OBJECTID'] !== null ? Autolinker.link(String(feature.properties['OBJECTID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>COD_ID</strong><br />' + (feature.properties['COD_ID'] !== null ? Autolinker.link(String(feature.properties['COD_ID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DISTRIBUIDORA</strong><br />' + (feature.properties['DISTRIBUIDORA'] !== null ? Autolinker.link(String(feature.properties['DISTRIBUIDORA'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>CONJUNTO</strong><br />' + (feature.properties['CONJUNTO'] !== null ? Autolinker.link(String(feature.properties['CONJUNTO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>TIPO_PONTO_NOTAVEL</strong><br />' + (feature.properties['TIPO_PONTO_NOTAVEL'] !== null ? Autolinker.link(String(feature.properties['TIPO_PONTO_NOTAVEL'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ESTRUTURA</strong><br />' + (feature.properties['ESTRUTURA'] !== null ? Autolinker.link(String(feature.properties['ESTRUTURA'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>MATERIAL</strong><br />' + (feature.properties['MATERIAL'] !== null ? Autolinker.link(String(feature.properties['MATERIAL'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ESFORCO</strong><br />' + (feature.properties['ESFORCO'] !== null ? Autolinker.link(String(feature.properties['ESFORCO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ALTURA</strong><br />' + (feature.properties['ALTURA'] !== null ? Autolinker.link(String(feature.properties['ALTURA'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>TIPO_ESTRUTURA</strong><br />' + (feature.properties['TIPO_ESTRUTURA'] !== null ? Autolinker.link(String(feature.properties['TIPO_ESTRUTURA'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>AREA_LOCALIZACAO</strong><br />' + (feature.properties['AREA_LOCALIZACAO'] !== null ? Autolinker.link(String(feature.properties['AREA_LOCALIZACAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>MUNICIPIO</strong><br />' + (feature.properties['MUNICIPIO'] !== null ? Autolinker.link(String(feature.properties['MUNICIPIO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DESCRICAO</strong><br />' + (feature.properties['DESCRICAO'] !== null ? Autolinker.link(String(feature.properties['DESCRICAO'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_PONTONOTAVEL_4_0() {
+            return {
+                pane: 'pane_PONTONOTAVEL_4',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(119,119,119,1.0)',
+            }
+        }
+        map.createPane('pane_PONTONOTAVEL_4');
+        map.getPane('pane_PONTONOTAVEL_4').style.zIndex = 404;
+        map.getPane('pane_PONTONOTAVEL_4').style['mix-blend-mode'] = 'normal';
+        var layer_PONTONOTAVEL_4 = new L.geoJson(json_PONTONOTAVEL_4, {
+            attribution: '',
+            pane: 'pane_PONTONOTAVEL_4',
+            onEachFeature: pop_PONTONOTAVEL_4,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_PONTONOTAVEL_4_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_PONTONOTAVEL_4);
+        map.addLayer(layer_PONTONOTAVEL_4);
+        function pop_CONSUMIDORBT_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>OBJECTID</strong><br />' + (feature.properties['OBJECTID'] !== null ? Autolinker.link(String(feature.properties['OBJECTID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>COD_ID</strong><br />' + (feature.properties['COD_ID'] !== null ? Autolinker.link(String(feature.properties['COD_ID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DISTRIBUIDORA</strong><br />' + (feature.properties['DISTRIBUIDORA'] !== null ? Autolinker.link(String(feature.properties['DISTRIBUIDORA'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>CONJUNTO</strong><br />' + (feature.properties['CONJUNTO'] !== null ? Autolinker.link(String(feature.properties['CONJUNTO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>SUBESTACAO</strong><br />' + (feature.properties['SUBESTACAO'] !== null ? Autolinker.link(String(feature.properties['SUBESTACAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>TRANSFORMADOR_SUBESTACAO</strong><br />' + (feature.properties['TRANSFORMADOR_SUBESTACAO'] !== null ? Autolinker.link(String(feature.properties['TRANSFORMADOR_SUBESTACAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>TRANSFORMADOR_DISTRIBUICAO</strong><br />' + (feature.properties['TRANSFORMADOR_DISTRIBUICAO'] !== null ? Autolinker.link(String(feature.properties['TRANSFORMADOR_DISTRIBUICAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>CIRCUITO_MEDIA_TENSAO</strong><br />' + (feature.properties['CIRCUITO_MEDIA_TENSAO'] !== null ? Autolinker.link(String(feature.properties['CIRCUITO_MEDIA_TENSAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>PONTO_NOTAVEL_CONECTADO</strong><br />' + (feature.properties['PONTO_NOTAVEL_CONECTADO'] !== null ? Autolinker.link(String(feature.properties['PONTO_NOTAVEL_CONECTADO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>PAC</strong><br />' + (feature.properties['PAC'] !== null ? Autolinker.link(String(feature.properties['PAC'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>AREA_LOCALIZACAO</strong><br />' + (feature.properties['AREA_LOCALIZACAO'] !== null ? Autolinker.link(String(feature.properties['AREA_LOCALIZACAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>FASES_CONEXAO</strong><br />' + (feature.properties['FASES_CONEXAO'] !== null ? Autolinker.link(String(feature.properties['FASES_CONEXAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>CLASSE_SUBCLASSE</strong><br />' + (feature.properties['CLASSE_SUBCLASSE'] !== null ? Autolinker.link(String(feature.properties['CLASSE_SUBCLASSE'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>GRUPO_TENSAO</strong><br />' + (feature.properties['GRUPO_TENSAO'] !== null ? Autolinker.link(String(feature.properties['GRUPO_TENSAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>TENSAO_FORNECIMENTO</strong><br />' + (feature.properties['TENSAO_FORNECIMENTO'] !== null ? Autolinker.link(String(feature.properties['TENSAO_FORNECIMENTO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>GRUPO_TARIFARIO</strong><br />' + (feature.properties['GRUPO_TARIFARIO'] !== null ? Autolinker.link(String(feature.properties['GRUPO_TARIFARIO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>CARGA_INSTALADA</strong><br />' + (feature.properties['CARGA_INSTALADA'] !== null ? Autolinker.link(String(feature.properties['CARGA_INSTALADA'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>CORRENTE_DISJUNTOR_GERAL</strong><br />' + (feature.properties['CORRENTE_DISJUNTOR_GERAL'] !== null ? Autolinker.link(String(feature.properties['CORRENTE_DISJUNTOR_GERAL'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DATA_CONEXAO</strong><br />' + (feature.properties['DATA_CONEXAO'] !== null ? Autolinker.link(String(feature.properties['DATA_CONEXAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>SITUACAO_ATIVACAO</strong><br />' + (feature.properties['SITUACAO_ATIVACAO'] !== null ? Autolinker.link(String(feature.properties['SITUACAO_ATIVACAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>MUNICIPIO</strong><br />' + (feature.properties['MUNICIPIO'] !== null ? Autolinker.link(String(feature.properties['MUNICIPIO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>LOGRADOURO</strong><br />' + (feature.properties['LOGRADOURO'] !== null ? Autolinker.link(String(feature.properties['LOGRADOURO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>BAIRRO</strong><br />' + (feature.properties['BAIRRO'] !== null ? Autolinker.link(String(feature.properties['BAIRRO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>CEP</strong><br />' + (feature.properties['CEP'] !== null ? Autolinker.link(String(feature.properties['CEP'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENE_01</strong><br />' + (feature.properties['ENE_01'] !== null ? Autolinker.link(String(feature.properties['ENE_01'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENE_02</strong><br />' + (feature.properties['ENE_02'] !== null ? Autolinker.link(String(feature.properties['ENE_02'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENE_03</strong><br />' + (feature.properties['ENE_03'] !== null ? Autolinker.link(String(feature.properties['ENE_03'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENE_04</strong><br />' + (feature.properties['ENE_04'] !== null ? Autolinker.link(String(feature.properties['ENE_04'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENE_05</strong><br />' + (feature.properties['ENE_05'] !== null ? Autolinker.link(String(feature.properties['ENE_05'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENE_06</strong><br />' + (feature.properties['ENE_06'] !== null ? Autolinker.link(String(feature.properties['ENE_06'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENE_07</strong><br />' + (feature.properties['ENE_07'] !== null ? Autolinker.link(String(feature.properties['ENE_07'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENE_08</strong><br />' + (feature.properties['ENE_08'] !== null ? Autolinker.link(String(feature.properties['ENE_08'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENE_09</strong><br />' + (feature.properties['ENE_09'] !== null ? Autolinker.link(String(feature.properties['ENE_09'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENE_10</strong><br />' + (feature.properties['ENE_10'] !== null ? Autolinker.link(String(feature.properties['ENE_10'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENE_11</strong><br />' + (feature.properties['ENE_11'] !== null ? Autolinker.link(String(feature.properties['ENE_11'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENE_12</strong><br />' + (feature.properties['ENE_12'] !== null ? Autolinker.link(String(feature.properties['ENE_12'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DIC</strong><br />' + (feature.properties['DIC'] !== null ? Autolinker.link(String(feature.properties['DIC'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>FIC</strong><br />' + (feature.properties['FIC'] !== null ? Autolinker.link(String(feature.properties['FIC'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DESCRICAO</strong><br />' + (feature.properties['DESCRICAO'] !== null ? Autolinker.link(String(feature.properties['DESCRICAO'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_CONSUMIDORBT_5_0() {
+            return {
+                pane: 'pane_CONSUMIDORBT_5',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(251,154,153,1.0)',
+            }
+        }
+        map.createPane('pane_CONSUMIDORBT_5');
+        map.getPane('pane_CONSUMIDORBT_5').style.zIndex = 405;
+        map.getPane('pane_CONSUMIDORBT_5').style['mix-blend-mode'] = 'normal';
+        var layer_CONSUMIDORBT_5 = new L.geoJson(json_CONSUMIDORBT_5, {
+            attribution: '',
+            pane: 'pane_CONSUMIDORBT_5',
+            onEachFeature: pop_CONSUMIDORBT_5,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_CONSUMIDORBT_5_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_CONSUMIDORBT_5);
+        map.addLayer(layer_CONSUMIDORBT_5);
+        function pop_CONSUMIDORMT_6(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>OBJECTID</strong><br />' + (feature.properties['OBJECTID'] !== null ? Autolinker.link(String(feature.properties['OBJECTID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>COD_ID</strong><br />' + (feature.properties['COD_ID'] !== null ? Autolinker.link(String(feature.properties['COD_ID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DISTRIBUIDORA</strong><br />' + (feature.properties['DISTRIBUIDORA'] !== null ? Autolinker.link(String(feature.properties['DISTRIBUIDORA'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>CONJUNTO</strong><br />' + (feature.properties['CONJUNTO'] !== null ? Autolinker.link(String(feature.properties['CONJUNTO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>SUBESTACAO</strong><br />' + (feature.properties['SUBESTACAO'] !== null ? Autolinker.link(String(feature.properties['SUBESTACAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>TRANSFORMADOR_SUBESTACAO</strong><br />' + (feature.properties['TRANSFORMADOR_SUBESTACAO'] !== null ? Autolinker.link(String(feature.properties['TRANSFORMADOR_SUBESTACAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>CIRCUITO_MEDIA_TENSAO</strong><br />' + (feature.properties['CIRCUITO_MEDIA_TENSAO'] !== null ? Autolinker.link(String(feature.properties['CIRCUITO_MEDIA_TENSAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>PONTO_NOTAVEL_CONECTADO</strong><br />' + (feature.properties['PONTO_NOTAVEL_CONECTADO'] !== null ? Autolinker.link(String(feature.properties['PONTO_NOTAVEL_CONECTADO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>PAC</strong><br />' + (feature.properties['PAC'] !== null ? Autolinker.link(String(feature.properties['PAC'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>AREA_LOCALIZACAO</strong><br />' + (feature.properties['AREA_LOCALIZACAO'] !== null ? Autolinker.link(String(feature.properties['AREA_LOCALIZACAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>FASES_CONEXAO</strong><br />' + (feature.properties['FASES_CONEXAO'] !== null ? Autolinker.link(String(feature.properties['FASES_CONEXAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>CLASSE_SUBCLASSE</strong><br />' + (feature.properties['CLASSE_SUBCLASSE'] !== null ? Autolinker.link(String(feature.properties['CLASSE_SUBCLASSE'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>GRUPO_TENSAO</strong><br />' + (feature.properties['GRUPO_TENSAO'] !== null ? Autolinker.link(String(feature.properties['GRUPO_TENSAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>TENSAO_FORNECIMENTO</strong><br />' + (feature.properties['TENSAO_FORNECIMENTO'] !== null ? Autolinker.link(String(feature.properties['TENSAO_FORNECIMENTO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>GRUPO_TARIFARIO</strong><br />' + (feature.properties['GRUPO_TARIFARIO'] !== null ? Autolinker.link(String(feature.properties['GRUPO_TARIFARIO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>CARGA_INSTALADA</strong><br />' + (feature.properties['CARGA_INSTALADA'] !== null ? Autolinker.link(String(feature.properties['CARGA_INSTALADA'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DATA_CONEXAO</strong><br />' + (feature.properties['DATA_CONEXAO'] !== null ? Autolinker.link(String(feature.properties['DATA_CONEXAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>SITUACAO_DE_ATIVACAO</strong><br />' + (feature.properties['SITUACAO_DE_ATIVACAO'] !== null ? Autolinker.link(String(feature.properties['SITUACAO_DE_ATIVACAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>MUNICIPIO</strong><br />' + (feature.properties['MUNICIPIO'] !== null ? Autolinker.link(String(feature.properties['MUNICIPIO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>LOGRADOURO</strong><br />' + (feature.properties['LOGRADOURO'] !== null ? Autolinker.link(String(feature.properties['LOGRADOURO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>BAIRRO</strong><br />' + (feature.properties['BAIRRO'] !== null ? Autolinker.link(String(feature.properties['BAIRRO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>CEP</strong><br />' + (feature.properties['CEP'] !== null ? Autolinker.link(String(feature.properties['CEP'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DEM_01</strong><br />' + (feature.properties['DEM_01'] !== null ? Autolinker.link(String(feature.properties['DEM_01'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DEM_02</strong><br />' + (feature.properties['DEM_02'] !== null ? Autolinker.link(String(feature.properties['DEM_02'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DEM_03</strong><br />' + (feature.properties['DEM_03'] !== null ? Autolinker.link(String(feature.properties['DEM_03'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DEM_04</strong><br />' + (feature.properties['DEM_04'] !== null ? Autolinker.link(String(feature.properties['DEM_04'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DEM_05</strong><br />' + (feature.properties['DEM_05'] !== null ? Autolinker.link(String(feature.properties['DEM_05'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DEM_06</strong><br />' + (feature.properties['DEM_06'] !== null ? Autolinker.link(String(feature.properties['DEM_06'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DEM_07</strong><br />' + (feature.properties['DEM_07'] !== null ? Autolinker.link(String(feature.properties['DEM_07'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DEM_08</strong><br />' + (feature.properties['DEM_08'] !== null ? Autolinker.link(String(feature.properties['DEM_08'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DEM_09</strong><br />' + (feature.properties['DEM_09'] !== null ? Autolinker.link(String(feature.properties['DEM_09'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DEM_10</strong><br />' + (feature.properties['DEM_10'] !== null ? Autolinker.link(String(feature.properties['DEM_10'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DEM_11</strong><br />' + (feature.properties['DEM_11'] !== null ? Autolinker.link(String(feature.properties['DEM_11'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DEM_12</strong><br />' + (feature.properties['DEM_12'] !== null ? Autolinker.link(String(feature.properties['DEM_12'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENE_01</strong><br />' + (feature.properties['ENE_01'] !== null ? Autolinker.link(String(feature.properties['ENE_01'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENE_02</strong><br />' + (feature.properties['ENE_02'] !== null ? Autolinker.link(String(feature.properties['ENE_02'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENE_03</strong><br />' + (feature.properties['ENE_03'] !== null ? Autolinker.link(String(feature.properties['ENE_03'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENE_04</strong><br />' + (feature.properties['ENE_04'] !== null ? Autolinker.link(String(feature.properties['ENE_04'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENE_05</strong><br />' + (feature.properties['ENE_05'] !== null ? Autolinker.link(String(feature.properties['ENE_05'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENE_06</strong><br />' + (feature.properties['ENE_06'] !== null ? Autolinker.link(String(feature.properties['ENE_06'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENE_07</strong><br />' + (feature.properties['ENE_07'] !== null ? Autolinker.link(String(feature.properties['ENE_07'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENE_08</strong><br />' + (feature.properties['ENE_08'] !== null ? Autolinker.link(String(feature.properties['ENE_08'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENE_09</strong><br />' + (feature.properties['ENE_09'] !== null ? Autolinker.link(String(feature.properties['ENE_09'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENE_10</strong><br />' + (feature.properties['ENE_10'] !== null ? Autolinker.link(String(feature.properties['ENE_10'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENE_11</strong><br />' + (feature.properties['ENE_11'] !== null ? Autolinker.link(String(feature.properties['ENE_11'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENE_12</strong><br />' + (feature.properties['ENE_12'] !== null ? Autolinker.link(String(feature.properties['ENE_12'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DIC</strong><br />' + (feature.properties['DIC'] !== null ? Autolinker.link(String(feature.properties['DIC'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>FIC</strong><br />' + (feature.properties['FIC'] !== null ? Autolinker.link(String(feature.properties['FIC'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DESCRICAO</strong><br />' + (feature.properties['DESCRICAO'] !== null ? Autolinker.link(String(feature.properties['DESCRICAO'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_CONSUMIDORMT_6_0() {
+            return {
+                pane: 'pane_CONSUMIDORMT_6',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(51,160,44,1.0)',
+            }
+        }
+        map.createPane('pane_CONSUMIDORMT_6');
+        map.getPane('pane_CONSUMIDORMT_6').style.zIndex = 406;
+        map.getPane('pane_CONSUMIDORMT_6').style['mix-blend-mode'] = 'normal';
+        var layer_CONSUMIDORMT_6 = new L.geoJson(json_CONSUMIDORMT_6, {
+            attribution: '',
+            pane: 'pane_CONSUMIDORMT_6',
+            onEachFeature: pop_CONSUMIDORMT_6,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_CONSUMIDORMT_6_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_CONSUMIDORMT_6);
+        map.addLayer(layer_CONSUMIDORMT_6);
+        function pop_SECCIONADORMT_7(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>OBJECTID</strong><br />' + (feature.properties['OBJECTID'] !== null ? Autolinker.link(String(feature.properties['OBJECTID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>COD_ID</strong><br />' + (feature.properties['COD_ID'] !== null ? Autolinker.link(String(feature.properties['COD_ID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DISTRIBUIDORA</strong><br />' + (feature.properties['DISTRIBUIDORA'] !== null ? Autolinker.link(String(feature.properties['DISTRIBUIDORA'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>CONJUNTO</strong><br />' + (feature.properties['CONJUNTO'] !== null ? Autolinker.link(String(feature.properties['CONJUNTO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>CIRCUITO_MEDIA_TENSAO</strong><br />' + (feature.properties['CIRCUITO_MEDIA_TENSAO'] !== null ? Autolinker.link(String(feature.properties['CIRCUITO_MEDIA_TENSAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>PAC_1</strong><br />' + (feature.properties['PAC_1'] !== null ? Autolinker.link(String(feature.properties['PAC_1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>PAC_2</strong><br />' + (feature.properties['PAC_2'] !== null ? Autolinker.link(String(feature.properties['PAC_2'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>AREA_LOCALIZACAO</strong><br />' + (feature.properties['AREA_LOCALIZACAO'] !== null ? Autolinker.link(String(feature.properties['AREA_LOCALIZACAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>TIPO_UNIDADE</strong><br />' + (feature.properties['TIPO_UNIDADE'] !== null ? Autolinker.link(String(feature.properties['TIPO_UNIDADE'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>CLASSE_TENSAO</strong><br />' + (feature.properties['CLASSE_TENSAO'] !== null ? Autolinker.link(String(feature.properties['CLASSE_TENSAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>FASES_CONEXAO</strong><br />' + (feature.properties['FASES_CONEXAO'] !== null ? Autolinker.link(String(feature.properties['FASES_CONEXAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>MEIO_DE_ISOLACAO</strong><br />' + (feature.properties['MEIO_DE_ISOLACAO'] !== null ? Autolinker.link(String(feature.properties['MEIO_DE_ISOLACAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ABERTURA_SOB_CARGA</strong><br />' + (feature.properties['ABERTURA_SOB_CARGA'] !== null ? Autolinker.link(String(feature.properties['ABERTURA_SOB_CARGA'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>POSICAO_NORMAL_DE_OPERACAO</strong><br />' + (feature.properties['POSICAO_NORMAL_DE_OPERACAO'] !== null ? Autolinker.link(String(feature.properties['POSICAO_NORMAL_DE_OPERACAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>CAPACIDADE_ELO</strong><br />' + (feature.properties['CAPACIDADE_ELO'] !== null ? Autolinker.link(String(feature.properties['CAPACIDADE_ELO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>CORRENTE_NOMINAL_(A)</strong><br />' + (feature.properties['CORRENTE_NOMINAL_(A)'] !== null ? Autolinker.link(String(feature.properties['CORRENTE_NOMINAL_(A)'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>SITUACAO_DE_ATIVACAO</strong><br />' + (feature.properties['SITUACAO_DE_ATIVACAO'] !== null ? Autolinker.link(String(feature.properties['SITUACAO_DE_ATIVACAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>TELECOMANDADO</strong><br />' + (feature.properties['TELECOMANDADO'] !== null ? Autolinker.link(String(feature.properties['TELECOMANDADO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DATA_CONEXAO</strong><br />' + (feature.properties['DATA_CONEXAO'] !== null ? Autolinker.link(String(feature.properties['DATA_CONEXAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>MUNICIPIO</strong><br />' + (feature.properties['MUNICIPIO'] !== null ? Autolinker.link(String(feature.properties['MUNICIPIO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DESCRICAO</strong><br />' + (feature.properties['DESCRICAO'] !== null ? Autolinker.link(String(feature.properties['DESCRICAO'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_SECCIONADORMT_7_0() {
+            return {
+                pane: 'pane_SECCIONADORMT_7',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(164,113,88,1.0)',
+            }
+        }
+        map.createPane('pane_SECCIONADORMT_7');
+        map.getPane('pane_SECCIONADORMT_7').style.zIndex = 407;
+        map.getPane('pane_SECCIONADORMT_7').style['mix-blend-mode'] = 'normal';
+        var layer_SECCIONADORMT_7 = new L.geoJson(json_SECCIONADORMT_7, {
+            attribution: '',
+            pane: 'pane_SECCIONADORMT_7',
+            onEachFeature: pop_SECCIONADORMT_7,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_SECCIONADORMT_7_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_SECCIONADORMT_7);
+        map.addLayer(layer_SECCIONADORMT_7);
+        function pop_TRANSFORMADORDEDISTRIBUICAO_8(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>OBJECTID</strong><br />' + (feature.properties['OBJECTID'] !== null ? Autolinker.link(String(feature.properties['OBJECTID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>COD_ID</strong><br />' + (feature.properties['COD_ID'] !== null ? Autolinker.link(String(feature.properties['COD_ID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DISTRIBUIDORA</strong><br />' + (feature.properties['DISTRIBUIDORA'] !== null ? Autolinker.link(String(feature.properties['DISTRIBUIDORA'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>CONJUNTO</strong><br />' + (feature.properties['CONJUNTO'] !== null ? Autolinker.link(String(feature.properties['CONJUNTO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>CIRCUITO_MEDIA_TENSAO</strong><br />' + (feature.properties['CIRCUITO_MEDIA_TENSAO'] !== null ? Autolinker.link(String(feature.properties['CIRCUITO_MEDIA_TENSAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>PAC_1</strong><br />' + (feature.properties['PAC_1'] !== null ? Autolinker.link(String(feature.properties['PAC_1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>PAC_2</strong><br />' + (feature.properties['PAC_2'] !== null ? Autolinker.link(String(feature.properties['PAC_2'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>TIPO_UNIDADE</strong><br />' + (feature.properties['TIPO_UNIDADE'] !== null ? Autolinker.link(String(feature.properties['TIPO_UNIDADE'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>TIPO_TRAFO</strong><br />' + (feature.properties['TIPO_TRAFO'] !== null ? Autolinker.link(String(feature.properties['TIPO_TRAFO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>CLASSE_TENSAO</strong><br />' + (feature.properties['CLASSE_TENSAO'] !== null ? Autolinker.link(String(feature.properties['CLASSE_TENSAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>TENSAO_NOMINAL_PRIMARIO</strong><br />' + (feature.properties['TENSAO_NOMINAL_PRIMARIO'] !== null ? Autolinker.link(String(feature.properties['TENSAO_NOMINAL_PRIMARIO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>TENSAO_NOMINAL_SECUNDARIO</strong><br />' + (feature.properties['TENSAO_NOMINAL_SECUNDARIO'] !== null ? Autolinker.link(String(feature.properties['TENSAO_NOMINAL_SECUNDARIO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>TAP</strong><br />' + (feature.properties['TAP'] !== null ? Autolinker.link(String(feature.properties['TAP'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ESQUEMA_LIGACAO</strong><br />' + (feature.properties['ESQUEMA_LIGACAO'] !== null ? Autolinker.link(String(feature.properties['ESQUEMA_LIGACAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>FASES_CONEXAO_PRIMARIA</strong><br />' + (feature.properties['FASES_CONEXAO_PRIMARIA'] !== null ? Autolinker.link(String(feature.properties['FASES_CONEXAO_PRIMARIA'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>FASES_CONEXAO_SECUNDARIA</strong><br />' + (feature.properties['FASES_CONEXAO_SECUNDARIA'] !== null ? Autolinker.link(String(feature.properties['FASES_CONEXAO_SECUNDARIA'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>CAPACIDADE_ELO_FUSIVEL</strong><br />' + (feature.properties['CAPACIDADE_ELO_FUSIVEL'] !== null ? Autolinker.link(String(feature.properties['CAPACIDADE_ELO_FUSIVEL'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>CAPACIDADE_CHAVE_FUSIVEL</strong><br />' + (feature.properties['CAPACIDADE_CHAVE_FUSIVEL'] !== null ? Autolinker.link(String(feature.properties['CAPACIDADE_CHAVE_FUSIVEL'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>POTENCIA_NOMINAL_(KVA)</strong><br />' + (feature.properties['POTENCIA_NOMINAL_(KVA)'] !== null ? Autolinker.link(String(feature.properties['POTENCIA_NOMINAL_(KVA)'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>PERDA_FERRO_(W)</strong><br />' + (feature.properties['PERDA_FERRO_(W)'] !== null ? Autolinker.link(String(feature.properties['PERDA_FERRO_(W)'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>PERDA_TOTAL_(W)</strong><br />' + (feature.properties['PERDA_TOTAL_(W)'] !== null ? Autolinker.link(String(feature.properties['PERDA_TOTAL_(W)'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>RESISTENCIA_PERCENTUAL_(%)</strong><br />' + (feature.properties['RESISTENCIA_PERCENTUAL_(%)'] !== null ? Autolinker.link(String(feature.properties['RESISTENCIA_PERCENTUAL_(%)'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>REATANCIA_PERCENTUAL_(%)</strong><br />' + (feature.properties['REATANCIA_PERCENTUAL_(%)'] !== null ? Autolinker.link(String(feature.properties['REATANCIA_PERCENTUAL_(%)'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>IMPEDANCIA_PERCENTUAL_(%)</strong><br />' + (feature.properties['IMPEDANCIA_PERCENTUAL_(%)'] !== null ? Autolinker.link(String(feature.properties['IMPEDANCIA_PERCENTUAL_(%)'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ATRIBUICAO_PERDAS</strong><br />' + (feature.properties['ATRIBUICAO_PERDAS'] !== null ? Autolinker.link(String(feature.properties['ATRIBUICAO_PERDAS'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>AREA_LOCALIZACAO</strong><br />' + (feature.properties['AREA_LOCALIZACAO'] !== null ? Autolinker.link(String(feature.properties['AREA_LOCALIZACAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>POSTO</strong><br />' + (feature.properties['POSTO'] !== null ? Autolinker.link(String(feature.properties['POSTO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>CONFIGURACAO_DO_CIRCUITO</strong><br />' + (feature.properties['CONFIGURACAO_DO_CIRCUITO'] !== null ? Autolinker.link(String(feature.properties['CONFIGURACAO_DO_CIRCUITO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>SITUACAO_ATIVACAO</strong><br />' + (feature.properties['SITUACAO_ATIVACAO'] !== null ? Autolinker.link(String(feature.properties['SITUACAO_ATIVACAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DATA_CONEXAO</strong><br />' + (feature.properties['DATA_CONEXAO'] !== null ? Autolinker.link(String(feature.properties['DATA_CONEXAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>MUNICIPIO</strong><br />' + (feature.properties['MUNICIPIO'] !== null ? Autolinker.link(String(feature.properties['MUNICIPIO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DESCRICAO</strong><br />' + (feature.properties['DESCRICAO'] !== null ? Autolinker.link(String(feature.properties['DESCRICAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FATOR_DEMANDA'] !== null ? Autolinker.link(String(feature.properties['FATOR_DEMANDA'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FATOR_POTENCIA'] !== null ? Autolinker.link(String(feature.properties['FATOR_POTENCIA'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_TRANSFORMADORDEDISTRIBUICAO_8_0() {
+            return {
+                pane: 'pane_TRANSFORMADORDEDISTRIBUICAO_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,127,0,1.0)',
+            }
+        }
+        map.createPane('pane_TRANSFORMADORDEDISTRIBUICAO_8');
+        map.getPane('pane_TRANSFORMADORDEDISTRIBUICAO_8').style.zIndex = 408;
+        map.getPane('pane_TRANSFORMADORDEDISTRIBUICAO_8').style['mix-blend-mode'] = 'normal';
+        var layer_TRANSFORMADORDEDISTRIBUICAO_8 = new L.geoJson(json_TRANSFORMADORDEDISTRIBUICAO_8, {
+            attribution: '',
+            pane: 'pane_TRANSFORMADORDEDISTRIBUICAO_8',
+            onEachFeature: pop_TRANSFORMADORDEDISTRIBUICAO_8,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_TRANSFORMADORDEDISTRIBUICAO_8_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_TRANSFORMADORDEDISTRIBUICAO_8);
+        map.addLayer(layer_TRANSFORMADORDEDISTRIBUICAO_8);
+        function pop_TRANSFORMADORDESUBESTACAO_9(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>OBJECTID</strong><br />' + (feature.properties['OBJECTID'] !== null ? Autolinker.link(String(feature.properties['OBJECTID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>COD_ID</strong><br />' + (feature.properties['COD_ID'] !== null ? Autolinker.link(String(feature.properties['COD_ID'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DISTRIBUIDORA</strong><br />' + (feature.properties['DISTRIBUIDORA'] !== null ? Autolinker.link(String(feature.properties['DISTRIBUIDORA'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>CONJUNTO</strong><br />' + (feature.properties['CONJUNTO'] !== null ? Autolinker.link(String(feature.properties['CONJUNTO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>SUBESTACAO</strong><br />' + (feature.properties['SUBESTACAO'] !== null ? Autolinker.link(String(feature.properties['SUBESTACAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>PAC_1</strong><br />' + (feature.properties['PAC_1'] !== null ? Autolinker.link(String(feature.properties['PAC_1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>PAC_2</strong><br />' + (feature.properties['PAC_2'] !== null ? Autolinker.link(String(feature.properties['PAC_2'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>TIPO_UNIDADE</strong><br />' + (feature.properties['TIPO_UNIDADE'] !== null ? Autolinker.link(String(feature.properties['TIPO_UNIDADE'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>TIPO_TRAFO</strong><br />' + (feature.properties['TIPO_TRAFO'] !== null ? Autolinker.link(String(feature.properties['TIPO_TRAFO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>REFRIGERACAO</strong><br />' + (feature.properties['REFRIGERACAO'] !== null ? Autolinker.link(String(feature.properties['REFRIGERACAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>CLASSE_TENSAO</strong><br />' + (feature.properties['CLASSE_TENSAO'] !== null ? Autolinker.link(String(feature.properties['CLASSE_TENSAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>TENSAO_NOMINAL_PRIMARIO</strong><br />' + (feature.properties['TENSAO_NOMINAL_PRIMARIO'] !== null ? Autolinker.link(String(feature.properties['TENSAO_NOMINAL_PRIMARIO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>TENSAO_NOMINAL_SECUNDARIO</strong><br />' + (feature.properties['TENSAO_NOMINAL_SECUNDARIO'] !== null ? Autolinker.link(String(feature.properties['TENSAO_NOMINAL_SECUNDARIO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ESQUEMA_LIGACAO</strong><br />' + (feature.properties['ESQUEMA_LIGACAO'] !== null ? Autolinker.link(String(feature.properties['ESQUEMA_LIGACAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>FASES_CONEXAO_PRIMARIA</strong><br />' + (feature.properties['FASES_CONEXAO_PRIMARIA'] !== null ? Autolinker.link(String(feature.properties['FASES_CONEXAO_PRIMARIA'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>FASES_CONEXAO_SECUNDARIA</strong><br />' + (feature.properties['FASES_CONEXAO_SECUNDARIA'] !== null ? Autolinker.link(String(feature.properties['FASES_CONEXAO_SECUNDARIA'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>SITUACAO_ATIVACAO</strong><br />' + (feature.properties['SITUACAO_ATIVACAO'] !== null ? Autolinker.link(String(feature.properties['SITUACAO_ATIVACAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>AREA_LOCALIZACAO</strong><br />' + (feature.properties['AREA_LOCALIZACAO'] !== null ? Autolinker.link(String(feature.properties['AREA_LOCALIZACAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>POTENCIA_NOMINAL_(KVA)</strong><br />' + (feature.properties['POTENCIA_NOMINAL_(KVA)'] !== null ? Autolinker.link(String(feature.properties['POTENCIA_NOMINAL_(KVA)'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>POTENCIA_VENTILACAO_FORCADA_01_(KVA)</strong><br />' + (feature.properties['POTENCIA_VENTILACAO_FORCADA_01_(KVA)'] !== null ? Autolinker.link(String(feature.properties['POTENCIA_VENTILACAO_FORCADA_01_(KVA)'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>POTENCIA_VENTILACAO_FORCADA_02_(KVA)</strong><br />' + (feature.properties['POTENCIA_VENTILACAO_FORCADA_02_(KVA)'] !== null ? Autolinker.link(String(feature.properties['POTENCIA_VENTILACAO_FORCADA_02_(KVA)'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>PERDA_FERRO_(W)</strong><br />' + (feature.properties['PERDA_FERRO_(W)'] !== null ? Autolinker.link(String(feature.properties['PERDA_FERRO_(W)'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>PERDA_TOTAL_(W)</strong><br />' + (feature.properties['PERDA_TOTAL_(W)'] !== null ? Autolinker.link(String(feature.properties['PERDA_TOTAL_(W)'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>RESISTENCIA_PERCENTUAL_(%)</strong><br />' + (feature.properties['RESISTENCIA_PERCENTUAL_(%)'] !== null ? Autolinker.link(String(feature.properties['RESISTENCIA_PERCENTUAL_(%)'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>REATANCIA_PERCENTUAL_(%)</strong><br />' + (feature.properties['REATANCIA_PERCENTUAL_(%)'] !== null ? Autolinker.link(String(feature.properties['REATANCIA_PERCENTUAL_(%)'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>IMPEDANCIA_PERCENTUAL_(%)</strong><br />' + (feature.properties['IMPEDANCIA_PERCENTUAL_(%)'] !== null ? Autolinker.link(String(feature.properties['IMPEDANCIA_PERCENTUAL_(%)'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DATA_FABRICACAO</strong><br />' + (feature.properties['DATA_FABRICACAO'] !== null ? Autolinker.link(String(feature.properties['DATA_FABRICACAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DATA_CONEXAO</strong><br />' + (feature.properties['DATA_CONEXAO'] !== null ? Autolinker.link(String(feature.properties['DATA_CONEXAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>MUNICIPIO</strong><br />' + (feature.properties['MUNICIPIO'] !== null ? Autolinker.link(String(feature.properties['MUNICIPIO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ALOCACAO_PERDAS</strong><br />' + (feature.properties['ALOCACAO_PERDAS'] !== null ? Autolinker.link(String(feature.properties['ALOCACAO_PERDAS'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENES_01</strong><br />' + (feature.properties['ENES_01'] !== null ? Autolinker.link(String(feature.properties['ENES_01'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENES_02</strong><br />' + (feature.properties['ENES_02'] !== null ? Autolinker.link(String(feature.properties['ENES_02'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENES_03</strong><br />' + (feature.properties['ENES_03'] !== null ? Autolinker.link(String(feature.properties['ENES_03'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENES_04</strong><br />' + (feature.properties['ENES_04'] !== null ? Autolinker.link(String(feature.properties['ENES_04'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENES_05</strong><br />' + (feature.properties['ENES_05'] !== null ? Autolinker.link(String(feature.properties['ENES_05'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENES_06</strong><br />' + (feature.properties['ENES_06'] !== null ? Autolinker.link(String(feature.properties['ENES_06'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENES_07</strong><br />' + (feature.properties['ENES_07'] !== null ? Autolinker.link(String(feature.properties['ENES_07'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENES_08</strong><br />' + (feature.properties['ENES_08'] !== null ? Autolinker.link(String(feature.properties['ENES_08'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENES_09</strong><br />' + (feature.properties['ENES_09'] !== null ? Autolinker.link(String(feature.properties['ENES_09'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENES_10</strong><br />' + (feature.properties['ENES_10'] !== null ? Autolinker.link(String(feature.properties['ENES_10'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENES_11</strong><br />' + (feature.properties['ENES_11'] !== null ? Autolinker.link(String(feature.properties['ENES_11'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>ENES_12</strong><br />' + (feature.properties['ENES_12'] !== null ? Autolinker.link(String(feature.properties['ENES_12'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DESCRICAO</strong><br />' + (feature.properties['DESCRICAO'] !== null ? Autolinker.link(String(feature.properties['DESCRICAO'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>FATOR_DEMANDA</strong><br />' + (feature.properties['FATOR_DEMANDA'] !== null ? Autolinker.link(String(feature.properties['FATOR_DEMANDA'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>FATOR_POTENCIA</strong><br />' + (feature.properties['FATOR_POTENCIA'] !== null ? Autolinker.link(String(feature.properties['FATOR_POTENCIA'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_TRANSFORMADORDESUBESTACAO_9_0() {
+            return {
+                pane: 'pane_TRANSFORMADORDESUBESTACAO_9',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(141,90,153,1.0)',
+            }
+        }
+        map.createPane('pane_TRANSFORMADORDESUBESTACAO_9');
+        map.getPane('pane_TRANSFORMADORDESUBESTACAO_9').style.zIndex = 409;
+        map.getPane('pane_TRANSFORMADORDESUBESTACAO_9').style['mix-blend-mode'] = 'normal';
+        var layer_TRANSFORMADORDESUBESTACAO_9 = new L.geoJson(json_TRANSFORMADORDESUBESTACAO_9, {
+            attribution: '',
+            pane: 'pane_TRANSFORMADORDESUBESTACAO_9',
+            onEachFeature: pop_TRANSFORMADORDESUBESTACAO_9,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_TRANSFORMADORDESUBESTACAO_9_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_TRANSFORMADORDESUBESTACAO_9);
+        map.addLayer(layer_TRANSFORMADORDESUBESTACAO_9);
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/TRANSFORMADORDESUBESTACAO_9.png" /> TRANSFORMADOR DE SUBESTACAO': layer_TRANSFORMADORDESUBESTACAO_9,'<img src="legend/TRANSFORMADORDEDISTRIBUICAO_8.png" /> TRANSFORMADOR DE DISTRIBUICAO': layer_TRANSFORMADORDEDISTRIBUICAO_8,'<img src="legend/SECCIONADORMT_7.png" /> SECCIONADOR MT': layer_SECCIONADORMT_7,'<img src="legend/CONSUMIDORMT_6.png" /> CONSUMIDOR MT': layer_CONSUMIDORMT_6,'<img src="legend/CONSUMIDORBT_5.png" /> CONSUMIDOR BT': layer_CONSUMIDORBT_5,'<img src="legend/PONTONOTAVEL_4.png" /> PONTO NOTAVEL': layer_PONTONOTAVEL_4,'<img src="legend/SEGMENTODEDISTRIBUICAOMT_3.png" /> SEGMENTO DE DISTRIBUICAO MT': layer_SEGMENTODEDISTRIBUICAOMT_3,'<img src="legend/SUBESTACAO_2.png" /> SUBESTACAO': layer_SUBESTACAO_2,'<img src="legend/CONJUNTO_1.png" /> CONJUNTO': layer_CONJUNTO_1,"GoogleSatellite": layer_GoogleSatellite_0,}).addTo(map);
+        map.on("zoomend", function(){
+
+                if (map.hasLayer(layer_SEGMENTODEDISTRIBUICAOMT_3)) {
+                    if (map.getZoom() <= 18 && map.getZoom() >= 19) {
+                        layer_SEGMENTODEDISTRIBUICAOMT_3.eachLayer(function (layer) {
+                            layer.openTooltip();
+                        });
+                    } else {
+                        layer_SEGMENTODEDISTRIBUICAOMT_3.eachLayer(function (layer) {
+                            layer.closeTooltip();
+                        });
+                    }
+                }
+        });
+        setBounds();
+        var i = 0;
+        layer_CONJUNTO_1.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['DESCRICAO'] !== null?String('<div style="color: #000000; font-size: 10pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['DESCRICAO']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_CONJUNTO_1'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_SUBESTACAO_2.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['COD_ID'] !== null?String('<div style="color: #ffffff; font-size: 7pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['COD_ID']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_SUBESTACAO_2'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_SEGMENTODEDISTRIBUICAOMT_3.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((label_SEGMENTODEDISTRIBUICAOMT_3_eval_expression(context) !== null?String('<div style="color: #000000; font-size: 9pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + label_SEGMENTODEDISTRIBUICAOMT_3_eval_expression(context)) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_SEGMENTODEDISTRIBUICAOMT_3'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_TRANSFORMADORDEDISTRIBUICAO_8.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['COD_ID'] !== null?String('<div style="color: #ffffff; font-size: 7pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['COD_ID']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_TRANSFORMADORDEDISTRIBUICAO_8'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+                if (map.hasLayer(layer_SEGMENTODEDISTRIBUICAOMT_3)) {
+                    if (map.getZoom() <= 18 && map.getZoom() >= 19) {
+                        layer_SEGMENTODEDISTRIBUICAOMT_3.eachLayer(function (layer) {
+                            layer.openTooltip();
+                        });
+                    } else {
+                        layer_SEGMENTODEDISTRIBUICAOMT_3.eachLayer(function (layer) {
+                            layer.closeTooltip();
+                        });
+                    }
+                }
+        resetLabels([layer_CONJUNTO_1,layer_SUBESTACAO_2,layer_SEGMENTODEDISTRIBUICAOMT_3,layer_PONTONOTAVEL_4,layer_SECCIONADORMT_7,layer_TRANSFORMADORDEDISTRIBUICAO_8,layer_TRANSFORMADORDESUBESTACAO_9]);
+        map.on("zoomend", function(){
+            resetLabels([layer_CONJUNTO_1,layer_SUBESTACAO_2,layer_SEGMENTODEDISTRIBUICAOMT_3,layer_PONTONOTAVEL_4,layer_SECCIONADORMT_7,layer_TRANSFORMADORDEDISTRIBUICAO_8,layer_TRANSFORMADORDESUBESTACAO_9]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_CONJUNTO_1,layer_SUBESTACAO_2,layer_SEGMENTODEDISTRIBUICAOMT_3,layer_PONTONOTAVEL_4,layer_SECCIONADORMT_7,layer_TRANSFORMADORDEDISTRIBUICAO_8,layer_TRANSFORMADORDESUBESTACAO_9]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_CONJUNTO_1,layer_SUBESTACAO_2,layer_SEGMENTODEDISTRIBUICAOMT_3,layer_PONTONOTAVEL_4,layer_SECCIONADORMT_7,layer_TRANSFORMADORDEDISTRIBUICAO_8,layer_TRANSFORMADORDESUBESTACAO_9]);
+        });
+        </script>
+    </body>
+</html>
